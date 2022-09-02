@@ -16,6 +16,7 @@
 #
 class User < ApplicationRecord
     #FIGVAPER
+    before_validation :ensure_session_token
     validates :username, :session_token, presence: true, uniqueness: true
     validates :password_digest, presence: true
     validates :password, length: {minimum: 6}, allow_nil: true
@@ -44,6 +45,7 @@ class User < ApplicationRecord
     end
 
     def password=(password)
+
         self.password_digest = BCrypt::Password.create(password)
         @password = password
     end

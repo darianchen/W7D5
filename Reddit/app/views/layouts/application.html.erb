@@ -10,6 +10,14 @@
   </head>
 
   <body>
+  <div>
+    <% if current_user.nil? %>
+      <a href="<%= new_session_url %>">Sign in</a>
+    <% end %>
+
+    </div>
+
+
     <%= yield %>
   </body>
 </html>
